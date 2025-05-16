@@ -1,0 +1,597 @@
+%请使用XeLaTeX进行编译！！！
+\documentclass{beamer}
+\usepackage{ctex, hyperref}
+%\usepackage[T1]{fontenc}
+% other packages
+\usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
+\usepackage{graphicx,pstricks,listings,stackengine}
+% 注释功能
+\usepackage{marginnote}
+\usepackage{xeCJK}
+%\usepackage{ctex}
+%拼音功能
+\usepackage{xpinyin}
+\newfontfamily\PinYinFont{TeX Gyre Adventor}
+\xpinyinsetup{font=\PinYinFont}
+\xeCJKsetup{AutoFakeBold=true}
+%图片功能
+\usepackage{caption}
+\setbeamerfont{caption}{size=\footnotesize, family=\kaishu}  % 设置字体大小和楷书
+\captionsetup[figure]{labelformat=empty}  % 隐藏"图X"序号
+% \tiny, \scriptsize, \footnotesize, \small, \normalsize（默认）
+% \large, \Large, \LARGE, \huge, \Huge
+
+
+%封面信息
+\author{李嘉图\textrm{}}
+\title{《道德经》系列读书会\textrm{}} %小括号内/右可填写内容，罗马字体
+\subtitle{第一期\textrm{}}
+\institute[陀思妥耶夫斯基读书会]{陀门中哲分部} % 方括号内是简称，外面是全称
+\date{\textrm{2025}年\textrm{4}月\textrm{6}日}
+\usepackage{SudaBeamer}
+
+%设置缩进
+\usepackage{indentfirst}
+
+%设置颜色
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+
+% 定义文言文相关颜色
+\definecolor{classical}{RGB}{89,61,43}     % 文言文颜色：深褐色
+\definecolor{trans}{RGB}{76,120,40}        % 译文颜色：墨绿色
+\definecolor{notemark}{RGB}{150,50,30}     % 注释颜色：暗红色
+\definecolor{comment}{RGB}{44,67,88}       % 评论颜色：藏青色
+
+% 定义文言文的文本样式
+\newcommand{\classical}[1]{\textcolor{classical}{\kaishu #1}}         % 文言文
+\newcommand{\trans}[1]{\textcolor{trans}{\fangsong #1}}              % 译文
+\newcommand{\notation}[1]{\textsuperscript{\textcolor{notemark}{\small #1}}} % 注释
+\newcommand{\comment}[1]{\textcolor{comment}{\kaishu #1}}            % 评论
+
+% 定义文言文边注命令
+\newcommand{\sidenote}[1]{\marginnote{\textcolor{notemark}{\small #1}}}
+
+% 定义文本框
+\newcommand{\classicalbox}[1]{
+	\begin{beamercolorbox}[wd=\textwidth,sep=1em,rounded=true]{block title}
+		\classical{#1}
+	\end{beamercolorbox}
+	}
+\newcommand{\transbox}[1]{
+	\begin{beamercolorbox}[wd=\textwidth,sep=1em,rounded=true]{block body}
+		\trans{#1}
+	\end{beamercolorbox}
+	}
+
+% 定义原文展示框
+\newcommand{\originaltext}[1]{
+	\begin{center}
+		\large\classical{#1}
+	\end{center}
+	}
+
+% 定义字体与模板混色
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\bfseries\color{deepblue},
+	emphstyle=\ttfamily\color{deepred},    % Custom highlighting style
+	stringstyle=\color{deepgreen},
+	numbers=left,
+	numberstyle=\small\color{halfgray},
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	frame=shadowbox,
+	}
+
+
+\begin{document}
+
+\kaishu
+% \setmainfont{Times New Roman}
+\begin{frame}
+	\titlepage 
+	\begin{figure}[htpb]
+		\begin{center}
+			\includegraphics[width=0.30\linewidth]{pic/tuomen.png}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+\begin{frame}
+	\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 分隔符 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{老子与《道德经》}
+\begin{frame}{老子生平}
+    \begin{columns}
+		\column{0.4\textwidth}
+        \begin{center}  % 使整个图片和标题居中
+            \includegraphics[width=0.9\textwidth]{pic/laozi.png}
+            \captionof{figure}{\centering 老子\\（约公元前571年-前471年）}
+        \end{center}
+		\column{0.6\textwidth}
+            姓李名耳，字伯阳，谥号聃 \\
+%==============================%
+		\vspace{0.2 cm}
+%==============================%
+            - 春秋时期楚国苦县人（今河南鹿邑）\\
+            - 曾任周朝“守藏室之史” \\
+            - 晚年隐居，西出函谷关著《道德经》
+    \end{columns}
+\end{frame}
+
+\begin{frame}{《道德经》介绍}
+		\begin{minipage}{0.3\textwidth}
+			\centering
+  			\includegraphics[width=0.665\linewidth]{pic/banboo.png}
+  			\captionof{figure}{竹简本}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\textwidth}
+			\centering
+			\includegraphics[width=0.51\linewidth]{pic/boshu.png}
+			\captionof{figure}{帛书本}
+		\end{minipage}
+		\hfill
+		\begin{minipage}{0.3\textwidth}
+			\centering
+			\includegraphics[width=0.7\linewidth]{pic/wangbi.png}
+			\captionof{figure}{王弼《老子注》}
+		\end{minipage}
+		
+%==============================%
+%    	\vspace{0.1 cm}
+%==============================% 
+
+	\begin{itemize}
+		\item 成书时间被认为在春秋末期或战国初期 %（约公元前485年）
+		\item 郭店楚墓出土的\alert{竹简《老子》}抄录于战国中晚期 % 出土于湖北荆门（约公元前300年）
+		\item 马王堆汉墓出土的\alert{帛书甲乙本}抄录于汉文帝时期 % 出土于湖南长沙（约公元前206年至公元前180年）
+		\item 继西汉河上公注本后，通行本\alert{王弼注本}成书于三国时期 % 约公元226年至公元249年
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{“道”与“德”}
+%    \vfill
+    \begin{block}{何谓“道”}
+    	\begin{itemize}
+    		\item 在金文中作“行”中置“首”，初指道路与方向。
+			\item “道”是天地间所有\alert{规律、真理}的总称。
+			\item 代指人或物所必须遵循的客观法则。
+		\end{itemize}
+    \end{block}
+    \vfill
+    
+    \begin{block}{何谓“德”}
+		\begin{itemize}
+			\item 在甲骨文中与“直”同源，本义为“目视标杆以正行路”。
+			\item “德”是\alert{具体事物}的规律、本性。
+			\item 已经被人掌握的这一部分道就叫作“德”。
+		\end{itemize}
+    \end{block}
+    \vfill
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 分隔符 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 普通文本页示例
+%\begin{frame}{普通文本示例}
+%    这是一个普通的文本页面。
+%    \begin{block}{普通 Block}
+%        这里是一个 Beamer 的 block。
+%    \end{block}
+%    \begin{alertblock}{警告 Block}
+%        这里是一个 alert block，用于高亮重要信息。
+%    \end{alertblock}
+%    \begin{exampleblock}{示例 Block}
+%        这里是一个 example block，适用于示例展示。
+%    \end{exampleblock}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 分隔符 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{原文解读}
+\begin{frame}{原文解读}
+	\begin{center}
+		{\large\calligra 上篇·道经}
+	\end{center}
+\end{frame}
+
+\subsection{第一章}
+%原文及注释
+\begin{frame}{第一章·注释}
+	\originaltext{
+	道可道，非常道\notation{1}。\\
+	名可名，非常名\notation{2}。\\
+	无名\notation{3}，天地之始。有名\notation{4}，万物之母。\\
+	故常无欲，以观其妙\notation{5}；常有欲，以观其\xpinyin{徼}{jiao4}\notation{6}。\\
+	此两者同出而异名，同谓之玄\notation{7}。\\
+	玄之又玄，众妙之门\notation{8}。
+	}
+	\begin{itemize}
+		\item[\notation{1}] 第一个“道”为名词，第二个为动词，下一句同。
+		\item[\notation{2}] 第一个“名”指具体事物的名称。第三个称“道”之名。
+		\item[\notation{3}] 无名：即“无”。指未分化的混沌状态。
+		\item[\notation{4}] 有名：指构成万物的最基本的物质元素。
+	\end{itemize}
+\end{frame}
+%加5/6/7/8注释的话分第二页摆放
+%注释续
+\begin{frame}{第一章·注释}
+	\originaltext{
+	道可道，非常道\notation{1}。\\
+	名可名，非常名\notation{2}。\\
+	无名\notation{3}，天地之始。有名\notation{4}，万物之母。\\
+	故常无欲，以观其妙\notation{5}；常有欲，以观其\xpinyin{徼}{jiao4}\notation{6}。\\
+	此两者同出而异名，同谓之玄\notation{7}。\\
+	玄之又玄，众妙之门\notation{8}。
+	}
+	\begin{itemize}
+		\item[\notation{5}] 第一个“道”为名词，第二个为动词。
+		\item[\notation{6}] 徼（jiào）：边界。这里引申为表象。
+		\item[\notation{7}] 玄者，冥也，默然无有也。（王弼注）
+		\item[\notation{8}] 玄：幽昧深远，形容道的深邃。
+	\end{itemize}
+\end{frame}
+
+%原文翻译
+\begin{frame}{第一章·译文}
+	\originaltext{
+	道可道，非常道。名可名，非常名。\\
+	无名，天地之始。有名，万物之母。\\
+	故常无欲，以观其妙；常有欲，以观其徼。\\
+	此两者同出而异名，同谓之玄。玄之又玄，众妙之门。
+	}
+	\begin{columns}[T]
+%		\column{0.45\textwidth}
+		\column{1.0\textwidth}
+		\trans{\setlength{\parindent}{2em}\\
+		%\hspace{1.0em}
+		可以用语言描述清楚的道，就不是永恒不变的大道；能够用来称呼的具体名称，就不是永恒不变的名称。\\
+		空虚无名的空间，是天地得以出现的开始；真实有名的基本物质，是万物得以产生的根源。\\
+		因此如果一个人能够经常保持清静无欲的心态，就可以观察空间和万物的微妙之处；如果经常处于多欲状态，就只能看到空间和万物的一些表面现象。\\
+		空间与物质同时出现而有不同的名称，它们可以说都是非常奥妙的。如果能够反复不断地去探索它们的奥妙，那么就能够打开通向天地万物奥秘的大门。
+		}
+		
+%		\column{0.45\textwidth}
+%		\comment{本章开篇即点明"道"的玄妙难言，"名"的局限性，以及有无相生的辩证关系。}
+	\end{columns}
+\end{frame}
+
+%章节赏析
+\begin{frame}{第一章·解读}
+	\originaltext{
+	道可道，非常道。名可名，非常名。\\
+	无名，天地之始。有名，万物之母。\\
+	故常无欲，以观其妙；常有欲，以观其徼。\\
+	此两者同出而异名，同谓之玄。玄之又玄，众妙之门。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\comment{\setlength{\parindent}{2em}\\
+		“道”作为所有规律的总称，其内涵丰富深奥、微妙复杂，所以很难用语言表达清楚。无论是最高真理，还是普通技能，都需要学习者亲自去体悟与实践，仅仅靠书本、语言，无法掌握其中的奥妙。\\
+		在老子看来，天地万物作为“有（物质）”，是在与“无（空间）”相对立中显现的。“有无相生”这一辩证思想，贯穿了《道德经》全书。
+		}
+	\end{columns}
+\end{frame}
+
+%\begin{frame}{字词注音}
+%	\begin{pinyinscope}
+%列位看官：你道此书从何而来？说起根由，虽近荒唐，细按则深有趣味。
+%待在下将此来历注明，方使阅者\xpinyin{了}{liao3}然不惑。
+%	\end{pinyinscope}
+%\end{frame}
+
+\subsection{第二章}
+%原文及注释
+\begin{frame}{第二章·注释}
+	\originaltext{
+	天下皆知美之为美，斯恶已\notation{1}；皆知善之为善，斯不善已。\\
+	故有无相生\notation{2}，难易相成，长短相较\notation{3}，高下相倾\notation{4}，音声相和\notation{5}，前后相随。\\
+	是以圣人处无为之事\notation{6}，行不言之教。\\
+	万物作焉而不辞\notation{7}，生而不有，为而不恃\notation{8}，功成而弗居。\\夫唯弗居，是以不去\notation{9}。
+	}
+	\begin{itemize}
+		\item[\notation{1}] 恶：丑。此处用作动词，显露出丑陋。
+		\item[\notation{2}] 有：物质存在。无：空间。
+		\item[\notation{3}] 相较：在相互比较中存在。
+		\item[\notation{4}] 相倾：相互依赖。
+		\item[\notation{5}] 经过修饰的声音叫作“音”，自然而然发出的声音叫作“声”。
+	\end{itemize}
+\end{frame}
+%注释续
+\begin{frame}{第二章·注释}
+	\originaltext{
+	天下皆知美之为美，斯恶已\notation{1}；皆知善之为善，斯不善已。\\
+	故有无相生\notation{2}，难易相成，长短相较\notation{3}，高下相倾\notation{4}，音声相和\notation{5}，前后相随。\\
+	是以圣人处无为之事\notation{6}，行不言之教。\\
+	万物作焉而不辞\notation{7}，生而不有，为而不恃\notation{8}，功成而弗居。\\夫唯弗居，是以不去\notation{9}。
+	}
+	\begin{itemize}
+		\item[\notation{6}] 处：行，做。无为：顺应自然而为。
+		\item[\notation{7}] 作：兴起，出现。不辞：不拒绝，不限制。
+		\item[\notation{8}] 恃：依赖。引申为追求回报。
+		\item[\notation{9}] 是以不去：因此不会失去。
+	\end{itemize}
+\end{frame}
+
+%原文翻译
+\begin{frame}{第二章·翻译}
+	% 保持原文在上方
+	\originaltext{
+	天下皆知美之为美，斯恶已；皆知善之为善，斯不善已。\\
+	故有无相生，难易相成，长短相较，高下相倾，音声相和，前后相随。\\
+	是以圣人处无为之事，行不言之教。\\
+	万物作焉而不辞，生而不有，为而不恃，功成而弗居。\\夫唯弗居，是以不去。
+	}
+	\begin{columns}[T]
+		\column{1.10\textwidth}
+		\trans{\setlength{\parindent}{2em}\\
+		如果天下的人都知道美好的东西是美好的话，那么丑陋的东西就显露出来了；\\
+		如果都知道善良的事情是善良的话，那么不善良的事情就显露出来了。\\
+		有和无在相互对立中得以形成，难和易在相互对应中得以产生，长和短在相互比较中得以显现，高和下在相互依赖中得以存在，音和声在相互应和中得以区分，前和后在相互对比中得以出现。
+		}
+	\end{columns}
+\end{frame}
+\begin{frame}{第二章·译文}
+	\originaltext{
+	天下皆知美之为美，斯恶已；皆知善之为善，斯不善已。\\
+	故有无相生，难易相成，长短相较，高下相倾，音声相和，前后相随。\\
+	是以圣人处无为之事，行不言之教。\\
+	万物作焉而不辞，生而不有，为而不恃，功成而弗居。\\夫唯弗居，是以不去。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\trans{\setlength{\parindent}{2em}\\
+		因此圣人所做的事情就是顺应自然而不提倡人为的干涉，圣人推行的是不用语言的教育。\\
+		圣人顺应万物的生长而不加以限制，生养了万物而不据为己有，帮助了万物而不要求它们的回报，建立了功劳而不据为己有。正因为圣人从不居功，所以也不会失去自己的功劳。
+		}
+	\end{columns}
+\end{frame}
+
+%章节赏析
+\begin{frame}{第二章·解读}
+	\originaltext{
+	天下皆知美之为美，斯恶已；皆知善之为善，斯不善已。\\
+	故有无相生，难易相成，长短相较，高下相倾，音声相和，前后相随。\\
+	是以圣人处无为之事，行不言之教。\\
+	万物作焉而不辞，生而不有，为而不恃，功成而弗居。\\夫唯弗居，是以不去。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\comment{\setlength{\parindent}{2em}\\
+		相互对立的东西必须相互依赖才能存在。既然没有“无”就没有“有”，那么没有“无为”，自然也就没有“无不为”；没有占有，自然也就没有失去。\\
+		由“不言之教”联想到《庄子·德充符》中的兀者王骀。“鲁有兀者王骀，从之游者与仲尼相若。……\ 立不教，坐不议，虚而往，实而归。固有不言之教、无形而心成者邪？”
+		}
+	\end{columns}
+\end{frame}
+
+
+\subsection{第三章}
+%原文及注释
+\begin{frame}{第三章·注释}
+	\originaltext{
+	不尚贤\notation{1}，使民不争；\\
+	不贵难得之货\notation{2}，使民不为盗；\\
+	不\xpinyin{见}{xian4}可欲\notation{3}，使民心不乱。\\
+	是以圣人之治：虚其心\notation{4}，实其腹；弱其志\notation{5}，强其骨。\\
+	常使民无知无欲，使夫智者不敢为也\notation{6}。\\
+	为无为\notation{7}，则无不治。\\
+    }
+    
+	\begin{itemize}
+		\item[\notation{1}] 尚：崇尚，重用。国家“尚贤”则民众好名。
+		\item[\notation{2}] 不看重金银珠玉之类的财物。
+		\item[\notation{3}] 见（xiàn）：同“现”，显露。可欲，即上文要破除的名利。
+		\item[\notation{4}] 使人们的内心虚静而无太多的欲望和杂念。
+		\item[\notation{5}] 志：志向。这里泛指欲望。
+	\end{itemize}
+\end{frame}
+%注释续
+\begin{frame}{第三章·注释}
+	\originaltext{
+	不尚贤\notation{1}，使民不争；\\
+	不贵难得之货\notation{2}，使民不为盗；\\
+	不\xpinyin{见}{xian4}可欲\notation{3}，使民心不乱。\\
+	是以圣人之治：虚其心\notation{4}，实其腹；弱其志\notation{5}，强其骨。\\
+	常使民无知无欲，使夫智者不敢为也\notation{6,7}。\\
+	为无为\notation{8}，则无不治。\\
+    }
+    
+	\begin{itemize}
+		\item[\notation{6}] 指世俗社会所认为的聪明人，而非真正的智者。
+		\item[\notation{7}] 为：与“无为”相对，指按照主观意愿行事。
+		\item[\notation{8}] 执行“无为”的政策。
+	\end{itemize}
+\end{frame}
+
+%原文翻译
+\begin{frame}{第三章·译文}
+	\originaltext{
+	不尚贤，使民不争；\\
+	不贵难得之货，使民不为盗；\\
+	不见可欲，使民心不乱。\\
+	是以圣人之治：虚其心，实其腹；弱其志，强其骨。\\
+	常使民无知无欲，使夫智者不敢为也。\\
+	为无为，则无不治。
+	}
+	\begin{columns}[T]
+		\column{1.1\textwidth}
+		\trans{\setlength{\parindent}{2em}\\
+		不要崇尚、重用贤人，百姓就不会去争夺美名；\\
+		不要看重贵重难得的金银财宝，百姓就不会去做盗贼；\\
+		不显露那些可以引起人们欲望的事物，百姓的心就不会被搅乱。\\
+		因此圣人治国的原则是：减少百姓的杂念，填饱他们的肚皮；降低百姓的欲望，增强他们的体质。\\
+		永远使百姓没有多少知识和欲望，使那些所谓的聪明人不敢按照主观意愿去为所欲为。\\
+		执行无为的政策，天下就会安定太平。
+		}
+	\end{columns}
+\end{frame}
+
+%章节赏析
+\begin{frame}{第三章·解读}
+	\originaltext{
+	不尚贤，使民不争；\\
+	不贵难得之货，使民不为盗；\\
+	不见可欲，使民心不乱。\\
+	是以圣人之治：虚其心，实其腹；弱其志，强其骨。\\
+	常使民无知无欲，使夫智者不敢为也。\\
+	为无为，则无不治。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\comment{\setlength{\parindent}{2em}\\
+		老子主张破除人们的好名、好利之心。认为一旦君主提倡重用贤人，真正的贤人未必就去出仕，而那些不贤的人为了名利权势而投君主所好，假扮成贤人的模样，获得权力后危害国家和百姓。\\
+		“虚心”之人，随遇而安，无可无不可，高官厚禄无法使他欣喜，穷困潦倒无法使他悲伤，命运无法给他带来丝毫的痛苦。\\
+		无奈命何，委顺以待终。命无奈我何，方寸如虚空。（白居易《达理二首·其二》）
+		}
+	\end{columns}
+\end{frame}
+
+
+\subsection{第四章}
+%原文及注释
+\begin{frame}{第四章·注释}
+	\originaltext{
+	道冲\notation{1}，而用之或不盈\notation{2}。\\
+	渊兮，似万物之宗\notation{3}：\\
+	挫其锐，解其纷\notation{4}；和其光，同其尘\notation{5}。\\
+	湛兮，似或存\notation{6}。\\
+	吾不知谁之子，象帝之先\notation{7}。
+	}
+	\begin{itemize}
+		\item[\notation{1}] 冲：空虚，无形无象。一说同“盅”，器虚也。
+		\item[\notation{2}] 而：如果。用：遵循。盈：盈满。
+		\item[\notation{3}] 大道如深渊般深邃奥妙，难以认识。宗：宗主，主宰者。
+		\item[\notation{4}] 挫去万物的锋芒，解除世间的纷扰。
+		\item[\notation{5}] 指不露锋芒，与世无争。
+	\end{itemize}
+\end{frame}
+%注释续
+\begin{frame}{第四章·注释}
+	\originaltext{
+	道冲\notation{1}，而用之或不盈\notation{2}。\\
+	渊兮，似万物之宗\notation{3}：\\
+	挫其锐，解其纷\notation{4}；和其光，同其尘\notation{5}。\\
+	湛兮，似或存\notation{6,7}。\\
+	吾不知谁之子，象帝之先\notation{8}。
+	}
+	\begin{itemize}
+		\item[\notation{6}] 湛：无形无象、看不见摸不着的样子。
+		\item[\notation{7}] 似或：好像。或：也许，似乎。
+		\item[\notation{8}] 象者，有形之始也；帝者，生物之祖也。（王安石注）
+    \end{itemize}
+\end{frame}
+
+%原文翻译
+\begin{frame}{第四章·译文}
+	\originaltext{
+	道冲，而用之或不盈。\\
+	渊兮，似万物之宗：\\
+	挫其锐，解其纷；和其光，同其尘。\\
+	湛兮，似或存。\\
+	吾不知谁之子，象帝之先。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\trans{\setlength{\parindent}{2em}\\
+		道是无形无象的，如果遵循它办事，也许就不会要求把事情办到盈满、极盛的状态。\\
+		大道就像深渊那样深邃奥妙而难以认识，它好像是万物的主宰者：\\
+		它挫去万物的锋芒，从而化解它们之间的纠纷；调和它们的优点，从而使它们都有一定的缺陷。\\
+		道是无形无象的，但似乎确实存在着。\\
+		我不知道是谁产生了它，只知道它出现于万物之前。
+		}
+	\end{columns}
+\end{frame}
+
+%章节赏析
+\begin{frame}{第四章·解读}
+	\originaltext{
+	道冲，而用之或不盈。\\
+	渊兮，似万物之宗：\\
+	挫其锐，解其纷；和其光，同其尘。\\
+	湛兮，似或存。\\
+	吾不知谁之子，象帝之先。
+	}
+	\begin{columns}[T]
+		\column{1.0\textwidth}
+		\comment{\setlength{\parindent}{2em}\\
+		“日极则仄，月满则亏”，做人做事不能过分追求盈满，而要留有一定的余地；\\
+		“木秀于林，风必摧之”，老子建议人们以“和光同尘”的保身原则处世；\\
+		老子认为“道”先于世间万物而存在，处于宇宙的本源地位。% 宇宙观
+		}
+	\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 分隔符 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{自由讨论}
+\begin{frame}{讨论主题}
+	\begin{enumerate} % 带序号列表
+		\item \alert{“道”}与\alert{“名”}的联系与区别是什么？
+		\item 怎样理解\alert{“有无相生”}的辩证思想？
+		\item 老子所推崇的\alert{“无为而治”}是否等同于消极不作为？
+		\item 是否应该认同\alert{“和光同尘”}的圆滑处世之方？
+		\item 《道德经》包含的哲学思想属于\alert{主观唯心主义}吗？
+		\item “道”应该被当作一种\alert{客观存在}来认识，还是作为一种\alert{虚无归因}来理解？
+%		\item 王弼“以无为本”与河上公“治身治国”两种注释传统，哪种更贴近原意？
+    \end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% 分隔符 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{参考资料}
+\begin{frame}{参考资料}
+	\begin{columns}%[T] % [T] 表示顶部对齐
+    % 左侧文字栏（宽度设为40%）
+	\column{0.4\textwidth}
+%==============================%
+%    \vspace{-3.2 cm}
+%==============================%
+	\centering
+		\begin{center}  % 使整个图片和标题居中
+			\includegraphics[width=0.86\textwidth]{pic/china.png}
+			\captionof{figure}{\centering 《道德经》\\中华书局出版}
+		\end{center}
+
+    % 右侧图片栏（宽度设为60%）
+	\column{0.6\textwidth}
+	\begin{exampleblock}{推荐读本}
+		\begin{itemize}
+			\item {《道德经》(张景、张松辉\ 译注)}
+		\end{itemize}
+	\end{exampleblock}
+    
+	\begin{exampleblock}{拓展资料}
+		\begin{itemize}
+			\item 王弼\ \ \ 《老子道德经注》
+			\item 陈鼓应《老子今注今译》
+			\item 任继愈《老子绎读》
+      \end{itemize}
+    \end{exampleblock}
+%==============================%
+    	 \vspace{0.5 cm}
+%==============================%
+  \end{columns}
+\end{frame}
+
+\begin{frame}{书法欣赏} % 任法融 前道教协会会长
+    \centering
+    \includegraphics[width=0.9\textwidth]{pic/daofaziran.png}
+    \captionof{figure}{\alert{任法融}书法作品}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        {\Large\calligra 谢谢倾听！}
+    \end{center}
+\end{frame}
+
+\end{document}

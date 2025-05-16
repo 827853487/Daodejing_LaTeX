@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{老子与《道德经》}{3}{0}{1}
+\beamer@sectionintoc {2}{原文解读}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{第一章：道可道章}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{第二章：天下皆知章}{13}{0}{2}
+\beamer@sectionintoc {3}{自由讨论}{14}{0}{3}
+\beamer@sectionintoc {4}{参考文献}{16}{0}{4}

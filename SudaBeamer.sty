@@ -1,0 +1,113 @@
+\mode<presentation>
+
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useoutertheme[footline=authorinstitutetitle,subsection=false]{smoothbars}
+\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\newcommand{\frameofframes}{/}
+\newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
+\setbeamertemplate{footline} 
+  {%
+    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}\kaishu
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
+      \leavevmode{\usebeamerfont{author in head/foot}\kaishu\insertshortauthor}%
+      \hfill%
+%次底部右侧显示机构简称[注释]      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\kaishu\insertshortinstitute}%
+      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\kaishu\insertinstitute}%
+\end{beamercolorbox}%
+    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+%底部左侧显示标题      {\usebeamerfont{title in head/foot}\kaishu\insertshorttitle}%
+      {\usebeamerfont{title in head/foot}\kaishu\insertshortinstitute}%  %改为显示机构简称
+      \hfill%
+      {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
+    \end{beamercolorbox}
+  }
+\makeatother
+
+\useinnertheme{circles}
+
+%\useoutertheme{default}
+%\useinnertheme[shadow=true]{rounded}
+
+%\xdefinecolor{tsinghua}{rgb}{0.455,0.204,0.506}  %RGB#82318E
+%\xdefinecolor{suda}{rgb}{0.57255,0.443137,0.31373}
+%\xdefinecolor{suda}{rgb}{0.6,0.4,0.2}
+
+% 1. 定义基础主题色（便签黄）
+\definecolor{suda}{RGB}{141,94,47}  % 主色调：暖色调的深褐色，用于标题、页脚等重要元素
+
+\setbeamercolor{footline}{bg=suda}
+\setbeamercolor{frametitle}{bg=suda,fg=white}
+\setbeamercolor{title}{bg=suda}
+\setbeamerfont{frametitle}{family=\kaishu, size=\large}
+\setbeamerfont{title}{family=\kaishu}
+%\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{bibliography item}[text]
+\setbeamertemplate{caption}[numbered]
+
+% 不同程度的主题色
+\setbeamercolor{palette primary}{use=structure,fg=white,bg=structure.fg}            % 主色调
+\setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black} % 次色调(75%主色+25%黑)
+\setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}  % 第三色调(50%主色+50%黑)
+\setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}             % 第四色调
+%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
+\setbeamercolor{titlelike}{parent=palette primary}
+
+%% try
+\setbeamercolor{block title}{bg=suda,fg=white}
+\setbeamerfont{block title}{family=\kaishu}
+\setbeamercolor*{block title example}{use={normal text,example text},bg=,fg=suda} % 文本框小标题
+\setbeamercolor{fine separation line}{}
+\setbeamercolor{item projected}{fg=white}
+\setbeamercolor{palette sidebar primary}{use=normal text,fg=normal text.fg}
+\setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
+\setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
+%\setbeamercolor{palette sidebar quaternary}{fg=white}
+\setbeamercolor{section in sidebar}{fg=brown}
+\setbeamercolor{section in sidebar shaded}{fg=grey}
+\setbeamerfont{section in sidebar shaded}{family=\kaishu}
+
+\setbeamercolor{separation line}{}
+\setbeamercolor{sidebar}{bg=suda}
+\setbeamerfont{sidebar}{family=\kaishu}
+\setbeamercolor{sidebar}{parent=palette primary}
+
+\setbeamercolor{alerted text}{fg=suda!75!black}  % 设置 alert 高亮文本的颜色
+
+% 基础结构颜色设置
+\setbeamercolor{structure}{fg=suda} % 设置所有结构性元素的默认颜色
+\setbeamercolor{subsection in sidebar}{fg=brown}
+\setbeamercolor{subsection in sidebar shaded}{fg=grey}
+\setbeamerfont{headline}{family=\kaishu}
+
+% 设置颜色和样式
+\setbeamercolor{section in toc}{fg=suda}  % 当前章节使用主题色
+\setbeamercolor{section in toc shaded}{fg=gray!70}  % 其他章节使用浅灰色（0-100）
+\setbeamerfont{section in toc}{family=\kaishu,series=\bfseries}  % 当前章节加粗+楷书
+\setbeamerfont{section in toc shaded}{family=\kaishu,series=\normalfont}  % 其他章节正常字重+楷书
+
+\AtBeginSection[]{
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+}
+\AtBeginSubsection[]{
+	\begin{frame}
+		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+\setbeamertemplate{background}{
+    \includegraphics[width=1\paperwidth,height=\paperheight]{pic/my_bg_8.pdf}
+}
+\mode
+<all>
